@@ -1,0 +1,54 @@
+<div class="row py-5">
+    <div class="col-md-7 mx-auto">
+        <span class="anchor" id="formLogin"></span>
+        <!-- form card login -->
+        <div class="card rounded-2">
+            <div class="card-header">
+                <h3 class="mb-0">Register</h3>
+            </div>
+            <div class="card-body">
+                <form class="login-form" [formGroup]="form" (submit)="registerUser()">
+                    <mat-form-field class="register-full-width">
+                        <input matInput #email placeholder="Email" maxlength="50" formControlName="email">
+                        <mat-hint align="end">{{email.value.length}} / 50</mat-hint>
+                        <mat-error
+                            *ngIf="form.controls['email'].hasError('email') && !form.controls['email'].hasError('required')">
+                            Invalid email id
+                        </mat-error>
+                        <mat-error *ngIf="form.controls['email'].hasError('required')">
+                            Email is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="register-full-width">
+                        <input matInput #username placeholder="User Name" maxlength="50" formControlName="username">
+                        <mat-hint align="end">{{username.value.length}} / 50</mat-hint>
+                        <mat-error
+                            *ngIf="form.controls['username'].hasError('minlength') && !form.controls['username'].hasError('pattern') && !form.controls['username'].hasError('required')">
+                            Minimum length of user name is 4
+                        </mat-error>
+                        <mat-error
+                            *ngIf="form.controls['username'].hasError('pattern') && !form.controls['username'].hasError('required')">
+                            Invalid User Name
+                        </mat-error>
+                        <mat-error *ngIf="form.controls['username'].hasError('required')">
+                            User Name is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>                    
+                    <mat-form-field class="register-full-width">
+                        <input matInput type="password" #password placeholder="Password" maxlength="50"
+                            formControlName="password">
+                        <mat-hint align="end">{{password.value.length}} / 50</mat-hint>
+                        <mat-error *ngIf="form.controls['password'].hasError('required')">
+                            password is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+
+                    <p>
+                        <button type="button"  type="submit"  [disabled]="form.invalid"  class="btn btn-primary float-right">Register</button>
+                    </p>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,15 @@
+<div [attr.contenteditable]="editable" (input)="onNameChange($event.target.innerHTML)">{{ policy }}</div>
+<button mat-raised-button color="primary" (click)="getPolicy()">Get Policy</button>
+<button mat-raised-button color="primary" (click)="onToggle()">Edit Policy</button>
+<button mat-raised-button color="primary" (click)="editPolicy()"> Save Policy </button>
+
+<p>
+    
+    <ng-container *ngIf="_auth.getUserDetails('role')==='user'">
+        
+        <button mat-raised-button color="primary" (click)="editPolicy()"> Save Policy </button>
+    </ng-container>
+    
+</p>
+
+

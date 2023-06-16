@@ -1,0 +1,34 @@
+<mat-toolbar color="primary">
+ <a routerLink="home" class="logo">Music Library</a> 
+
+  <ng-container *ngIf="isLoggedIn(); else loginButton">
+    <button mat-button (click)="logout()">
+      <mat-icon>logout</mat-icon>
+      Logout
+   </button> 
+  </ng-container>
+
+  <ng-template  #loginButton>
+    <ul>
+      <li>
+        <button mat-button routerLink="login">
+          <mat-icon>login</mat-icon>
+          Login
+      </button> 
+      </li>
+      <li>
+        <button mat-button routerLink="sign-up">
+          <mat-icon>person_add</mat-icon>
+          Sign-up
+        </button> 
+      </li>
+    </ul>
+  </ng-template>
+
+</mat-toolbar>
+
+<div class="content">
+ <router-outlet>
+
+ </router-outlet>
+</div>

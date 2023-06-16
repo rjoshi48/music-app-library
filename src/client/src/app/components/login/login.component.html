@@ -1,0 +1,38 @@
+<div class="form-container mat-elevation-z5">
+    <h1>Sign in to an existing account</h1>
+    <form [formGroup]="loginForm" (ngSubmit)="submit()">
+        <div class="margin-botton">
+            <span class="">New to Music Library? <a class="signup-link" routerLink="/sign-up">Sign up!</a></span>
+        </div>
+        
+        <mat-form-field>
+            <input matInput placeholder="Email address" formControlName="email" type="email">
+            <mat-error *ngIf="email?.errors?.['required']">
+                Email is required
+            </mat-error>
+        </mat-form-field>
+    
+        <mat-form-field>
+            <input matInput placeholder="Password" formControlName="password" type="password">
+            <mat-error *ngIf="password?.errors?.['required']">
+                Password is required
+            </mat-error>
+        </mat-form-field>
+
+        <div class="margin-botton">
+            <span class=""><a class="signup-link" routerLink="/forgot-password">Forgot Password?</a></span>
+        </div>
+
+        <div class="margin-botton">
+            <a (click)="signInWithGoogle()" style="font-size: large ;cursor: pointer;">
+                <div class="card shadow">
+                        <img src="../../../assets/icongoogle.png" alt="" height="30px" width="30px"> Sign In with Google
+                </div>
+            </a>
+        </div>
+
+        <button class="margin-top" mat-raised-button color="primary" type="submit">
+            Sign In
+        </button>
+    </form>
+</div>

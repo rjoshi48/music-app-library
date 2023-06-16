@@ -1,0 +1,45 @@
+<div class="form-container mat-elevation-z5">
+    <h1>Sign up for a new account</h1>
+    <form [formGroup]="signUpForm" (ngSubmit)="submit()">
+        <div class="margin-botton">
+            <span class="">Already a member?<a class="signin-link" routerLink="/login">Sign In!</a></span>
+        </div>
+        
+        <mat-form-field>
+            <input matInput placeholder="Full Name" formControlName="username">
+            <mat-error *ngIf="username?.errors?.['required']">
+                Name is required
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput placeholder="Email address" formControlName="email" type="email">
+            <mat-error *ngIf="email?.errors?.['required']">
+                Email is required
+            </mat-error>
+        </mat-form-field>
+    
+        <mat-form-field>
+            <input matInput placeholder="Password" formControlName="password" type="password">
+            <mat-error *ngIf="password?.errors?.['required']">
+                Password is required
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput placeholder="Confirm Password" formControlName="confirmPassword" type="password">
+            <mat-error *ngIf="confirmPassword?.errors?.['required']">
+                Confirm Password is required
+            </mat-error>
+        </mat-form-field>
+
+        <mat-error *ngIf="signUpForm.errors?.['passwordsDontMatch']">
+            Passwords don't match
+        </mat-error>    
+
+
+        <button class="margin-top" mat-raised-button color="primary" type="submit">
+            Register
+        </button>
+    </form>
+</div>

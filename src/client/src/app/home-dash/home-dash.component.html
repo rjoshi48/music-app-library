@@ -1,0 +1,19 @@
+<div class="grid-container">
+  <mat-grid-list cols="2" rowHeight="350px">
+    <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+        </mat-card-header>
+        <mat-card-content>
+          <div *ngIf="card.title==='Songs'"><app-home></app-home></div>   
+          <div *ngIf="card.title==='About'"><p>
+            Western Musicly is where students can review their favourite songs and share their playlists with fellow students. Once logged in, Students can add a review, ratings, create a custom playlist and also add songs.
+          </p>  
+           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec arcu molestie, venenatis massa at, hendrerit odio. Sed suscipit lectus vel ligula pharetra, ac consequat lorem accumsan. Donec consequat vel dolor vel facilisis. Phasellus vitae maximus mauris. Quisque interdum maximus risus at tempor. Suspendisse potenti. Fusce eu justo varius ligula euismod vestibulum. Praesent mauris nisl, tristique vel nunc at, imperdiet bibendum odio. Nunc nec dui luctus, pellentesque erat in, hendrerit erat. Sed aliquam ac dui eget sodales. Fusce vel nulla vitae purus posuere vehicula. Suspendisse potenti. Nulla rutrum hendrerit felis. Maecenas arcu nunc, sagittis at dignissim ac, tristique vitae tortor. Nam sodales sit amet ipsum in mollis. Etiam tempor cursus ante id laoreet.
+        </p>
+        </div> 
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

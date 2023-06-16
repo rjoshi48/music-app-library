@@ -1,0 +1,176 @@
+<form class="song-form" [formGroup]="_song.form" (submit)="onSubmit()">
+    <p>
+        <mat-form-field class="song-full-width">
+            <input matInput #title placeholder="Title" maxlength="300" formControlName="title">
+            <mat-hint align="end">{{title.value.length}} / 300</mat-hint>
+            <mat-error
+                *ngIf="_song.form.controls['title'].hasError('pattern') && !_song.form.controls['title'].hasError('required')">
+                Invalid Character
+            </mat-error>
+            <mat-error
+                *ngIf="_song.form.controls['title'].hasError('minlength') && !_song.form.controls['title'].hasError('required') && !_song.form.controls['title'].hasError('pattern')">
+                Minimum Length of Title is 3
+            </mat-error>
+            <mat-error *ngIf="_song.form.controls['title'].hasError('required')">
+                Title is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="song-full-width">
+            <input matInput #artist placeholder="Artist" maxlength="300" formControlName="artist">
+            <mat-hint align="end">{{artist.value.length}} / 300</mat-hint>
+            <mat-error
+                *ngIf="_song.form.controls['artist'].hasError('pattern') && !_song.form.controls['artist'].hasError('required')">
+                Invalid Character
+            </mat-error>
+            <mat-error
+                *ngIf="_song.form.controls['artist'].hasError('minlength') && !_song.form.controls['artist'].hasError('required') && !_song.form.controls['artist'].hasError('pattern')">
+                Minimum Length of Artist is 3
+            </mat-error>
+            <mat-error *ngIf="_song.form.controls['artist'].hasError('required')">
+                Artist is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="song-full-width">
+            <input matInput #album placeholder="Album" maxlength="300" formControlName="album">
+            <mat-hint align="end">{{album.value.length}} / 300</mat-hint>
+            <mat-error
+                *ngIf="_song.form.controls['album'].hasError('pattern') && !_song.form.controls['album'].hasError('required')">
+                Invalid Character
+            </mat-error>
+            <mat-error
+                *ngIf="_song.form.controls['album'].hasError('minlength') && !_song.form.controls['album'].hasError('required') && !_song.form.controls['album'].hasError('pattern')">
+                Minimum Length of Album is 3
+            </mat-error>
+            <mat-error *ngIf="_song.form.controls['album'].hasError('required')">
+                Album is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+    </p>
+
+    <table class="song-full-width" cellspacing="0">
+        <tr>
+            <td>
+                <mat-form-field class="song-full-width">
+                    <input matInput #year placeholder="Year" maxlength="4" formControlName="year">
+                    <mat-hint align="end">YYYY</mat-hint>
+                    <mat-error
+                        *ngIf="_song.form.controls['year'].hasError('pattern') && !_song.form.controls['year'].hasError('required')">
+                        Invalid Character
+                    </mat-error>
+                    <mat-error
+                        *ngIf="_song.form.controls['year'].hasError('minlength') && !_song.form.controls['year'].hasError('required') && !_song.form.controls['year'].hasError('pattern')">
+                        Year should be in YYYY format
+                    </mat-error>
+                    <mat-error
+                        *ngIf="_song.form.controls['year'].hasError('min') && !_song.form.controls['year'].hasError('required') && !_song.form.controls['year'].hasError('pattern') && !_song.form.controls['year'].hasError('minlength')">
+                        Year should be above 1950
+                    </mat-error>
+                    <mat-error
+                        *ngIf="_song.form.controls['year'].hasError('max') && !_song.form.controls['year'].hasError('required') && !_song.form.controls['year'].hasError('pattern') && !_song.form.controls['year'].hasError('minlength')">
+                        Year cannot be greater than the current year
+                    </mat-error>
+                    <mat-error *ngIf="_song.form.controls['year'].hasError('required')">
+                        year is <strong>required</strong>
+                    </mat-error>
+
+                </mat-form-field>
+            </td>
+            <td>
+                <mat-form-field class="song-full-width">
+                    <input matInput #genre placeholder="Genre" maxlength="100" formControlName="genre">
+                    <mat-hint align="end">{{genre.value.length}} / 100</mat-hint>
+                    <mat-error
+                        *ngIf="_song.form.controls['genre'].hasError('pattern') && !_song.form.controls['genre'].hasError('required')">
+                        Invalid Character
+                    </mat-error>
+                    <mat-error
+                        *ngIf="_song.form.controls['genre'].hasError('minlength') && !_song.form.controls['genre'].hasError('required') && !_song.form.controls['genre'].hasError('pattern')">
+                        Minimum Length of Genre is 3
+                    </mat-error>
+                    <mat-error *ngIf="_song.form.controls['genre'].hasError('required')">
+                        Genre is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <mat-form-field class="song-full-width">
+                    <input matInput #track placeholder="Track" maxlength="3" formControlName="track">
+                    <mat-hint align="end">{{track.value.length}} / 3</mat-hint>
+                    <mat-error
+                        *ngIf="_song.form.controls['track'].hasError('pattern') && !_song.form.controls['track'].hasError('required')">
+                        Invalid Character
+                    </mat-error>
+                    <mat-error
+                        *ngIf="(_song.form.controls['track'].hasError('min') || _song.form.controls['track'].hasError('max')) && !_song.form.controls['track'].hasError('required')  && !_song.form.controls['track'].hasError('pattern')">
+                        Track number should be between 1 and 999
+                    </mat-error>
+                    <mat-error *ngIf="_song.form.controls['track'].hasError('required')">
+                        Track is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+            </td>
+            <td>
+                <mat-form-field class="song-full-width">
+                    <input matInput #length placeholder="Length" maxlength="4" formControlName="length">
+                    <mat-hint align="end">In Seconds {{length.value.length}} / 4</mat-hint>
+                    <mat-error
+                        *ngIf="_song.form.controls['length'].hasError('pattern') && !_song.form.controls['length'].hasError('required')">
+                        Invalid Character
+                    </mat-error>
+                    <mat-error
+                        *ngIf="(_song.form.controls['length'].hasError('min') || _song.form.controls['length'].hasError('max')) && !_song.form.controls['length'].hasError('required')  && !_song.form.controls['length'].hasError('pattern')">
+                        Length should be between 1 and 9999 seconds
+                    </mat-error>
+                    <mat-error *ngIf="_song.form.controls['length'].hasError('required')">
+                        Length is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+            </td>
+        </tr>
+    </table>
+
+    <ng-container *ngIf="_song.form.controls['$key'].value!='modify'">
+    <mat-form-field class="song-full-width">
+        <mat-select #rating placeholder="Rating" [(value)]="selected" formControlName="rating">
+            <mat-option value="1">1</mat-option>
+            <mat-option value="2">2</mat-option>
+            <mat-option value="3">3</mat-option>
+            <mat-option value="4">4</mat-option>
+            <mat-option value="5">5</mat-option>
+        </mat-select>
+        <!-- <mat-error *ngIf="_song.form.controls['rating'].hasError('required')">
+            Rating is <strong>required</strong>
+        </mat-error> -->
+    
+    </mat-form-field>
+    <mat-form-field class="review-full-width">
+        <textarea matInput #review maxlength="300" placeholder="Leave a Review"
+        formControlName="review"></textarea>
+        <mat-hint align="end">{{review.value.length}} / 300</mat-hint>
+        <mat-error *ngIf="_song.form.controls['review'].hasError('pattern')">
+            Invalid Character
+        </mat-error>
+        <mat-error
+            *ngIf="_song.form.controls['review'].hasError('minlength') && !_song.form.controls['review'].hasError('pattern')">
+            Minimum Length of Review is 3
+        </mat-error>
+        <mat-error *ngIf="_song.form.controls['review'].hasError('required')">
+            Review is <strong>required</strong>
+        </mat-error>
+    </mat-form-field>   
+    </ng-container> 
+
+    <p>
+        <button *ngIf="_song.form.controls['$key'].value!='modify'" mat-raised-button type="submit"  color="primary" [disabled]="_song.form.invalid"> Submit</button>
+        <button *ngIf="_song.form.controls['$key'].value=='modify'" mat-raised-button type="submit"  color="primary" [disabled]="_song.form.invalid"> Update</button>
+        <button mat-raised-button color="warn" type="reset"  (click)="onClear()">Clear</button>
+    </p>
+
+</form>
+
+
+<!-- Copyright 2019 Google LLC. All Rights Reserved.
+      Use of this source code is governed by an MIT-style license that
+      can be found in the LICENSE file at http://angular.io/license -->

@@ -1,0 +1,47 @@
+<div class="element-description">
+  <b>Album : </b> {{songDetails.Album}}
+</div>
+<div class="element-description">
+  <b>Track : </b> {{songDetails.Track}}
+</div>
+<div class="element-description">
+  <b>Genre : </b> {{songDetails.Genre}}
+</div>
+<div class="element-description">
+  <b>Year : </b> {{songDetails.Year}}
+</div>
+<div class="element-description">
+  <b>Rating : </b> {{songDetails.Rating}}
+</div>
+<div class="element-description">
+  <b>Number of Reviews : </b> {{songDetails.reviewCount}}
+</div>
+<br>
+<div class="element-description">
+  <b>Review : </b>
+</div>
+<ng-container *ngIf="_playlist.module!='Create'">
+<button mat-raised-button type="button" color="primary" (click)="addReviewDialog()"> Add</button>  </ng-container>
+<button mat-raised-button type="button" *ngIf="songDetails.Reviews!=null" color="warn" (click)="openDialog()"> View
+  All</button>
+
+
+
+
+
+<div>
+  <ng-container *ngFor="let review of songDetails.Reviews; ">
+    <div (click)="openDialog()">
+      <div class="element-description"><b>userName : </b>{{review.user_id.username}}</div>
+      <div class="element-description">
+        <b>Rating : </b>{{review.rating}}
+      </div>
+      <div class="review-description">
+        {{review.desc}}
+      </div>
+
+
+    </div>
+  </ng-container>
+
+</div>

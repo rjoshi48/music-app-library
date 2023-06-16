@@ -1,0 +1,51 @@
+<!--https://material.angular.io/components/table/examples-->
+<ng-container *ngIf="_playlist.module=='default'">
+<h1>Playlists</h1>
+<!-- <button  *ngIf="_auth.loggedIn()" mat-raised-button (click)="onCreate()">
+  <mat-icon>add</mat-icon>Create
+</button> -->
+<mat-form-field class="search-width">
+    <input matInput placeholder="Search for Playlist" #input>
+</mat-form-field>
+
+
+</ng-container>
+<table mat-table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8">
+
+  <ng-container matColumnDef="{{column}}" *ngFor="let column of columnsToDisplay; ">
+    <th mat-header-cell *matHeaderCellDef> {{column}} </th>
+    <ng-container *ngIf="column===' ' && _auth.loggedIn() && _auth.getUserDetails('role')==='user'">
+      
+      <mat-cell *matCellDef="let row">
+        <ng-container *ngIf="_playlist.module=='default'">
+          <button mat-icon-button color="primary" (click)="onEdit(row)"><mat-icon>edit</mat-icon></button>
+        </ng-container> 
+        <ng-container *ngIf="_playlist.module=='Create'">
+          <button mat-icon-button color="primary" (click)="addSongToPlaylist(row)"><mat-icon>add</mat-icon></button>
+        </ng-container>                    
+      </mat-cell>
+    
+    </ng-container>  
+    <td mat-cell *matCellDef="let element;"> {{element[column]}} </td>
+  </ng-container>
+
+  <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+  <ng-container matColumnDef="expandedDetail">
+    <td mat-cell *matCellDef="let element; let i=dataIndex;" [attr.colspan]="columnsToDisplay.length">
+      <div class="example-element-detail" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+        <div class="example-element-description">
+              <app-song-table></app-song-table>
+        </div>
+      </div>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+  <tr mat-row *matRowDef="let element; columns: columnsToDisplay; " class="example-element-row"
+    [class.example-expanded-row]="expandedElement === element"
+    (click)="expandedElement = expandedElement === element ? null : element;loadPlaylistSongs(expandedElement)">
+  </tr>
+  <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+</table>
+
+

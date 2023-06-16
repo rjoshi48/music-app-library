@@ -1,0 +1,78 @@
+<mat-accordion>
+    <mat-expansion-panel (opened)="panelOpenState = true"
+    (closed)="panelOpenState = false" [expanded]="module=='Edit'">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+        <mat-icon>playlist_add</mat-icon> {{module}}  Playlist
+        </mat-panel-title>
+        <mat-panel-description *ngIf="module!='Edit'">
+        Add song to a new playlist
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+  
+      <form class="song-form" [formGroup]="_playlist.form" (submit)="onSubmit()">
+        <p>
+            <mat-form-field class="playlist-full-width">
+                <input matInput #playlist_title placeholder="Title" maxlength="300" formControlName="playlist_title">
+                <mat-hint align="end">{{playlist_title.value.length}} / 300</mat-hint>
+                <mat-error
+                    *ngIf="_playlist.form.controls['playlist_title'].hasError('pattern') && !_playlist.form.controls['playlist_title'].hasError('required')">
+                    Invalid Character
+                </mat-error>
+                <mat-error
+                    *ngIf="_playlist.form.controls['playlist_title'].hasError('minlength') && !_playlist.form.controls['playlist_title'].hasError('required') && !_playlist.form.controls['playlist_title'].hasError('pattern')">
+                    Minimum Length of title is 3
+                </mat-error>
+                <mat-error *ngIf="_playlist.form.controls['playlist_title'].hasError('required')">
+                    Title is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="playlist-full-width">
+                <input matInput #playlist_desc placeholder="Description" maxlength="300" formControlName="playlist_desc">
+                <mat-hint align="end">{{playlist_desc.value.length}} / 300</mat-hint>
+                <mat-error
+                    *ngIf="_playlist.form.controls['playlist_desc'].hasError('pattern') && !_playlist.form.controls['playlist_desc'].hasError('required')">
+                    Invalid Character
+                </mat-error>
+                <mat-error
+                    *ngIf="_playlist.form.controls['playlist_desc'].hasError('minlength') && !_playlist.form.controls['playlist_desc'].hasError('required') && !_playlist.form.controls['playlist_desc'].hasError('pattern')">
+                    Minimum Length of Description is 3
+                </mat-error>
+                <mat-error *ngIf="_playlist.form.controls['playlist_desc'].hasError('required')">
+                    Description is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+    
+          <mat-form-field class="playlist-full-width">
+            <mat-select #visiblity placeholder="visiblity" [(value)]="selected" formControlName="visiblity">
+                <mat-option value="public">public</mat-option>
+                <mat-option value="private">private</mat-option>
+            </mat-select>
+             <mat-error *ngIf="_playlist.form.controls['visiblity'].hasError('required')">
+                Visiblity is <strong>required</strong>
+            </mat-error> 
+    
+        </mat-form-field>
+        
+        <p>
+            <button *ngIf="_playlist.form.controls['$key'].value!='modify'" mat-raised-button type="submit"  color="primary" [disabled]="_playlist.form.invalid"> Submit</button>
+            <button *ngIf="_playlist.form.controls['$key'].value=='modify'" mat-raised-button type="submit"  color="primary" [disabled]="_playlist.form.invalid"> Update</button>
+            <button mat-raised-button color="warn" type="reset"  (click)="onClear()">Clear</button>
+        </p>
+    
+    </form>
+
+
+    </mat-expansion-panel>    
+  </mat-accordion>
+  <ng-container *ngIf="_playlist.module=='Create'">
+  <app-playlist-table></app-playlist-table>
+  </ng-container>
+  
+
+
+
+
+<!-- Copyright 2019 Google LLC. All Rights Reserved.
+      Use of this source code is governed by an MIT-style license that
+      can be found in the LICENSE file at http://angular.io/license -->

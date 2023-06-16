@@ -1,0 +1,13 @@
+<div *ngIf="input.value===''">
+    <h2>Top 10 Songs by User Rating</h2>
+  </div>
+  
+    <button  *ngIf="_auth.loggedIn()" mat-raised-button (click)="onCreate()">
+    <mat-icon>add</mat-icon>Create
+  </button>
+  <mat-form-field class="search-width">
+    <mat-icon matSuffix>search</mat-icon>
+    <input matInput type="search" placeholder="Search in All Songs/Artist/Genre/Year" #input>
+  </mat-form-field>
+
+<app-song-table></app-song-table>

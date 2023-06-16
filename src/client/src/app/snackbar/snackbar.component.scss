@@ -1,0 +1,16 @@
+.mat-snack-bar-container.success {
+    background-color: #5cb85c;
+    color : #fff;
+  }
+  
+  .mat-snack-bar-container.warn {
+    background-color: #f99157;
+    color : #fff;
+  }
+  
+  .mat-snack-bar-container .flex {
+    display: flex;    
+      justify-content: space-between;
+      font-size: 18px !important;
+      font-weight: bold;
+  }

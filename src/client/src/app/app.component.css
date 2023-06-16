@@ -1,0 +1,23 @@
+mat-toolbar{
+    justify-content: space-between;
+}
+
+.content{
+    padding: 32px;
+}
+
+.loginButton{
+    margin: 10%;
+    padding: 10px;
+}
+
+ul li{
+    display: inline;
+    list-style-type: none;
+} 
+
+a.logo {
+    color: white;
+    text-decoration:double;
+    font-weight: bold;
+}
